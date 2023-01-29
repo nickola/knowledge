@@ -111,18 +111,23 @@ def action_documentation():
 
             for file in snippets or ():
                 content = open(file).read().strip()
+                content_lines = content.splitlines()
                 comment = []
 
-                for line in content.splitlines():
+                for index, line in enumerate(content_lines):
                     line = line.strip()
 
                     if not line or line.startswith('#'):
                         comment.append(line.lstrip('#').lstrip())
 
                     else:
+                        first_line = index
+
                         while comment and comment[-1] != '':
+                            first_line -= 1
                             del comment[-1]
 
+                        content_lines = content_lines[first_line:]
                         break
 
                 if len(comment) >= 2:
@@ -133,7 +138,10 @@ def action_documentation():
 
                     if comment:
                         file_link = '[{file}]({file})'.format(file=file.lstrip('./'))
-                        snippets_parts.append("### {}\n\n{}\n\nSee file: {}.".format(header, comment, file_link))
+                        content_inline = "\n".join(content_lines)
+
+                        code = '<details>\n<summary>Show content</summary>\n\n```\n{}\n```\n</details>'.format(content_inline)
+                        snippets_parts.append("### {}\n\n{}\n\nSee file: {}.\n\n{}".format(header, comment, file_link, code))
 
             if snippets_parts:
                 parts.append("## {}".format(SNIPPETS_TITLE))
