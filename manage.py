@@ -5,6 +5,7 @@ import argparse
 from fnmatch import fnmatch
 
 # Settings
+TITLE = "Knowledge Base"
 COMPONENTS = [
     {'path': './kubernetes'},
     {'path': './linux'}
@@ -84,7 +85,7 @@ def add_table_of_content(markdown):
     table_of_content = "\n".join(rendered_items)
 
     if table_of_content:
-        markdown = "# Contents\n\n{}\n\n{}".format(table_of_content, markdown)
+        markdown = "# {}\n\n{}\n\n{}".format(TITLE, table_of_content, markdown)
 
     return markdown
 
