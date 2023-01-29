@@ -140,7 +140,7 @@ See file: [kubernetes/snippets/environment-variables.yaml](kubernetes/snippets/e
 <details>
 <summary>Show content</summary>
 
-```
+```yaml
 # ConfigMap
 apiVersion: v1
 kind: ConfigMap
