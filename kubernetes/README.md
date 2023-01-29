@@ -31,7 +31,7 @@ For example, in AWS (Amazon Web Services) EKS (Elastic Kubernetes Service) contr
   - `Container runtime`: Software that is responsible for running containers, for example: `containerd`, `CRI-O` or
     any other implementation of the Kubernetes `CRI` (Container Runtime Interface).
 
-## Other components
+## Other Components
 
 The `CoreDNS` pods provide DNS names resolution for all pods in the cluster.
 In managed Kubernetes from cloud providers the following components can be used.
