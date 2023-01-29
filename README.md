@@ -9,8 +9,8 @@
   - [Service](#service)
   - [Liveness, Readiness and Startup Probes](#liveness-readiness-and-startup-probes)
 - [Linux](#linux)
-  - [Load Average (LA)](#load-average-la-)
-  - ["proc" Filesystem](#"proc"-filesystem)
+  - [Load Average (LA)](#load-average-la)
+  - ["proc" Filesystem](#proc-filesystem)
   - [Process States](#process-states)
 
 # Kubernetes

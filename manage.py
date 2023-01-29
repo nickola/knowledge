@@ -14,7 +14,7 @@ OUTPUT = {
 }
 
 REGEX_MARKDOWN_HEADER = re.compile(r'^(?P<pounds>#+)\s+(?P<text>.*)$')
-REGEX_MARKDOWN_HEADER_LINK = re.compile(r'[\s()\.,\-_]+')
+REGEX_MARKDOWN_HEADER_LINK = re.compile(r'[\s\'\"\.\,\-_()]+')
 
 
 # Functions
@@ -54,7 +54,7 @@ def add_table_of_content(markdown):
 
     for level, text in items:
         spaces = '  ' * ((level - 1) if level > 0 else 0)
-        link = REGEX_MARKDOWN_HEADER_LINK.sub('-', text.lower())
+        link = REGEX_MARKDOWN_HEADER_LINK.sub('-', text.lower()).strip('-')
 
         rendered_items.append('{spaces}- [{text}](#{link})'.format(spaces=spaces, text=text, link=link))
 
