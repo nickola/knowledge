@@ -5,7 +5,8 @@ from fnmatch import fnmatch
 
 # Settings
 COMPONENTS = [
-  {'path': './kubernetes'}
+    {'path': './kubernetes'},
+    {'path': './linux'}
 ]
 
 OUTPUT = {
@@ -13,9 +14,10 @@ OUTPUT = {
 }
 
 REGEX_MARKDOWN_HEADER = re.compile(r'^(?P<pounds>#+)\s+(?P<text>.*)$')
-REGEX_MARKDOWN_HEADER_LINK = re.compile(r'[\s\(\)\.,_]+')
+REGEX_MARKDOWN_HEADER_LINK = re.compile(r'[\s()\.,\-_]+')
 
 
+# Functions
 def get_files(path, pattern=None):
     result = []
 
@@ -64,7 +66,8 @@ def add_table_of_content(markdown):
     return markdown
 
 
-def generate_documentation():
+# Actions
+def action_documentation():
     parts = []
 
     def processor(_, files):
@@ -90,7 +93,28 @@ def generate_documentation():
 
 # Main
 def main():
-    generate_documentation()
+    parser = argparse.ArgumentParser(description="Knowledge Base management")
+    action_parsers = parser.add_subparsers(help="Actions")
+
+    # Documentation
+    documentation_parser = action_parsers.add_parser('documentation', help="Generate documentation")
+    documentation_parser.set_defaults(action='documentation')
+
+    # Start
+    arguments = vars(parser.parse_args())
+    action = arguments.pop('action', None)
+
+    if action:
+        method_name = 'action_{}'.format(action)
+        handler = globals().get(method_name)
+
+        if not handler:
+            raise Exception("Unknown method: {}".format(method_name))
+
+        handler()
+
+    else:
+        parser.print_help()
 
 
 if __name__ == '__main__':
