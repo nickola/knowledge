@@ -5,7 +5,6 @@ import argparse
 from fnmatch import fnmatch
 
 # Settings
-TITLE = "Knowledge Base"
 COMPONENTS = [
     {'path': './kubernetes'},
     {'path': './linux'}
@@ -14,6 +13,9 @@ COMPONENTS = [
 OUTPUT = {
     'documentation': './README.md'
 }
+
+TABLE_OF_CONTENT_TITLE = "Contents"
+SNIPPETS_TITLE = "Snippets"
 
 IGNORE_FILES = ['.*', '_*']
 
@@ -85,7 +87,7 @@ def add_table_of_content(markdown):
     table_of_content = "\n".join(rendered_items)
 
     if table_of_content:
-        markdown = "# {}\n\n{}\n\n{}".format(TITLE, table_of_content, markdown)
+        markdown = "# {}\n\n{}\n\n{}".format(TABLE_OF_CONTENT_TITLE, table_of_content, markdown)
 
     return markdown
 
@@ -134,7 +136,7 @@ def action_documentation():
                         snippets_parts.append("### {}\n\n{}\n\nSee file: {}.".format(header, comment, file_link))
 
             if snippets_parts:
-                parts.append("## Snippets")
+                parts.append("## {}".format(SNIPPETS_TITLE))
                 parts.extend(snippets_parts)
 
     process_component_files(processor, pattern='*.md', snippets=True)

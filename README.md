@@ -1,4 +1,4 @@
-# Knowledge Base
+# Contents
 
 - [Kubernetes](#kubernetes)
   - [Control Plane](#control-plane)
