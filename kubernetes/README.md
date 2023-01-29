@@ -76,20 +76,6 @@ Controller tracks Kubernetes resources, it tries to make the current state come 
   Suspending (`suspend: true`) `Job` will delete its active `Pods` until the `Job` is resumed again.
 - `CronJob`: Performs regular scheduled actions (scheduling with CRON syntax). Creates `Jobs` according to a schedule.
 
-## Service
-
-`Service` is an abstract way to expose application running on a set of `Pods` (based on `selector` - `Pod` labels) as a network service (load balanced as round robin / random).
-
-`Service` types:
-  - `ClusterIP`: Default type, cluster-internal IP address. Only reachable within the cluster network.
-  - `NodePort`: Exposes the service on each node at a static port.
-  - `LoadBalancer`: Cloud provider will create a load balancer (integrates NodePort with cloud-based load balancers).
-  - `ExternalName`: Map to a DNS name, will return `CNAME` record with specified value.
-
-If `selector` is not defined, corresponding `EndpointSlice` (legacy `Endpoints`) are not created automatically and should be created manually. `EndpointSlice` contains references to a set of network endpoints.
-
-Headless `Service` used when you don't need load balancing across `Pods` and single IP for the `Service`. If will return DNS `A` / `AAAA` records for each IP or DNS `CNAME` record for `type: ExternalName`. It can be created if explicitly specify `None` for the `clusterIP` field.
-
 ## Liveness, Readiness and Startup Probes
 
 `livenessProbe` is used to know when to restart a container. For example: application is running but doesn't work properly (deadlock or some other issue).
@@ -110,3 +96,17 @@ Probes configuration:
     Defaults to `1`, minimum is `1`.
   - `failureThreshold`: After the probe fails specified times in a row, the overall check has failed:
     the container is not ready / healthy / live. For the case of a startup or liveness probe - container will be restarted.
+
+## Service
+
+`Service` is an abstract way to expose application running on a set of `Pods` (based on `selector` - `Pod` labels) as a network service (load balanced as round robin / random).
+
+`Service` types:
+  - `ClusterIP`: Default type, cluster-internal IP address. Only reachable within the cluster network.
+  - `NodePort`: Exposes the service on each node at a static port.
+  - `LoadBalancer`: Cloud provider will create a load balancer (integrates NodePort with cloud-based load balancers).
+  - `ExternalName`: Map to a DNS name, will return `CNAME` record with specified value.
+
+If `selector` is not defined, corresponding `EndpointSlice` (legacy `Endpoints`) are not created automatically and should be created manually. `EndpointSlice` contains references to a set of network endpoints.
+
+Headless `Service` used when you don't need load balancing across `Pods` and single IP for the `Service`. If will return DNS `A` / `AAAA` records for each IP or DNS `CNAME` record for `type: ExternalName`. It can be created if explicitly specify `None` for the `clusterIP` field.
