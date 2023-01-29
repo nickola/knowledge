@@ -14,30 +14,52 @@ OUTPUT = {
     'documentation': './README.md'
 }
 
+IGNORE_FILES = ['.*', '_*']
+
 REGEX_MARKDOWN_HEADER = re.compile(r'^(?P<pounds>#+)\s+(?P<text>.*)$')
 REGEX_MARKDOWN_HEADER_LINK = re.compile(r'[\s\'\"\.\,\-_()]+')
 
 
 # Functions
-def get_files(path, pattern=None):
+def get_files(path, pattern=None, ignore=None):
     result = []
+
+    if ignore is None:
+        ignore = IGNORE_FILES
 
     for root, _, files in os.walk(path):
         for file in files:
             is_matched = fnmatch(file, pattern) if pattern else True
+
+            for ignore_pattern in ignore or ():
+                if fnmatch(file, ignore_pattern):
+                    is_matched = False
+                    break
 
             if is_matched:
                 result.append(os.path.join(root, file))
 
         break
 
+    result.sort()
+
     return result
 
 
-def process_component_files(processor, components=None, pattern=None):
+def process_component_files(processor, components=None, pattern=None, snippets=False):
     for component in (components or COMPONENTS):
-        files = get_files(component['path'], pattern=pattern)
-        processor(component, files)
+        data = {
+            'component': component,
+            'files': get_files(component['path'], pattern=pattern)
+        }
+
+        if snippets:
+            snippets_path = os.path.join(component['path'], 'snippets')
+
+            if os.path.exists(snippets_path):
+                data['snippets'] = get_files(snippets_path)
+
+        processor(data)
 
 
 def add_table_of_content(markdown):
@@ -71,17 +93,49 @@ def add_table_of_content(markdown):
 def action_documentation():
     parts = []
 
-    def processor(_, files):
-        for file in files:
-            file_name = os.path.basename(file)
+    def processor(section):
+        files, snippets = section.get('files'), section.get('snippets')
 
-            if not file_name.startswith('_'):
+        for file in files or ():
+            content = open(file).read().strip()
+
+            if content:
+                parts.append(content)
+
+        # Add snippets only if documentation exists
+        if parts:
+            snippets_parts = []
+
+            for file in snippets or ():
                 content = open(file).read().strip()
+                comment = []
 
-                if content:
-                    parts.append(content)
+                for line in content.splitlines():
+                    line = line.strip()
 
-    process_component_files(processor, pattern='*.md')
+                    if not line or line.startswith('#'):
+                        comment.append(line.lstrip('#').lstrip())
+
+                    else:
+                        while comment and comment[-1] != '':
+                            del comment[-1]
+
+                        break
+
+                if len(comment) >= 2:
+                    header = comment[0]
+                    del comment[0]
+
+                    comment = "\n".join(comment).strip()
+
+                    if comment:
+                        snippets_parts.append("### {}\n\n{}\n\nSee file: `{}`.".format(header, comment, file))
+
+            if snippets_parts:
+                parts.append("## Snippets")
+                parts.extend(snippets_parts)
+
+    process_component_files(processor, pattern='*.md', snippets=True)
 
     if parts:
         output = OUTPUT['documentation']

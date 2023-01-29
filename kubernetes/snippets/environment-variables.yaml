@@ -1,3 +1,8 @@
+# Environment variables for container
+
+# This example shows how to add environment variables to container from `ConfigMap`, `Secret` and
+# downwards API (`Node` name and IP, `Pod` namespace, name and IP, resources requests and limits).
+
 # ConfigMap
 apiVersion: v1
 kind: ConfigMap
@@ -78,7 +83,7 @@ spec:
                 sleep 5;
               done
           env:
-            # Metadata (see: https://kubernetes.io/docs/concepts/workloads/pods/downward-api/)
+            # Downwards API (see: https://kubernetes.io/docs/concepts/workloads/pods/downward-api/)
             - name: NODE_NAME
               valueFrom:
                 fieldRef:
