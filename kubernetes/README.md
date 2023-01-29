@@ -1,14 +1,3 @@
-# Contents
-
-- [Kubernetes](#kubernetes)
-  - [Control Plane](#control-plane)
-  - [Other components](#other-components)
-  - [Workloads](#workloads)
-    - [Pods](#pods)
-    - [Workload Resources and Controllers](#workload-resources-and-controllers)
-  - [Service](#service)
-  - [Liveness, Readiness and Startup Probes](#liveness-readiness-and-startup-probes)
-
 # Kubernetes
 
 Kubernetes is a container orchestration engine for automating deployment, scaling and management of containerized applications.
