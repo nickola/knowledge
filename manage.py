@@ -129,7 +129,8 @@ def action_documentation():
                     comment = "\n".join(comment).strip()
 
                     if comment:
-                        snippets_parts.append("### {}\n\n{}\n\nSee file: `{}`.".format(header, comment, file))
+                        file_link = '[{file}]({file})'.format(file=file.lstrip('./'))
+                        snippets_parts.append("### {}\n\n{}\n\nSee file: {}.".format(header, comment, file_link))
 
             if snippets_parts:
                 parts.append("## Snippets")
