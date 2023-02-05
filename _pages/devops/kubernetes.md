@@ -128,7 +128,8 @@ Headless `Service` used when you don't need load balancing across `Pods` and sin
 
 ## Environment variables
 
-This example shows how to add environment variables to container from `ConfigMap`, `Secret` and
-downwards API (`Node` name and IP, `Pod` namespace, name and IP, resources requests and limits).
+> File: [environment-variables.yaml](/devops/kubernetes-examples/environment-variables.yaml)
 
-See file: [/devops/kubernetes/environment-variables.yaml](environment-variables.yaml).
+```yaml
+{% include_relative kubernetes-examples/environment-variables.yaml %}
+```
