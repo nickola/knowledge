@@ -46,7 +46,7 @@ Private IPv4 address ranges (RFC 1918):
 10.0.0.3 (for future), 10.0.0.255 (broadcast, not supported).
 
 Resources are placed in `Subnets` - segments of the `VPC` (with a nested IP address range).
-Each subnet must reside entirely within one `Availability Zone` and cannot span zones.
+Each subnet must reside entirely within one `Availability Zone` and cannot span multiple zones.
 
 Subnet types:
   - `Public Subnet`: Has Internet access (via Internet Gateway), instances have public IPs and accessible from Internet.
