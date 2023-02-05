@@ -5,21 +5,23 @@
     {% for section_name in site.sections %}
       {% assign section = pages_by_section | where: "name", section_name | first %}
 
-      <nav class="ActionList sidebar-navigation">
-        <div class="ActionList-sectionDivider">
-          <span class="ActionList-sectionDivider-title">{{ section.name }}</span>
-        </div>
-        <ul>
-          {% assign items = section.items | sort: "order", "first" %}
-          {% for item in items %}
-            <li class="ActionList-item{% if item.url == page.url %} ActionList-item--navActive{% endif %}">
-              <a href="{{ item.url }}" class="ActionList-content">
-                <span class="ActionList-item-label">{{ item.name }}</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
+      {% if section  %}
+        <nav class="ActionList sidebar-navigation">
+          <div class="ActionList-sectionDivider">
+            <span class="ActionList-sectionDivider-title">{{ section.name }}</span>
+          </div>
+          <ul>
+            {% assign items = section.items | sort: "order", "first" %}
+            {% for item in items %}
+              <li class="ActionList-item{% if item.url == page.url %} ActionList-item--navActive{% endif %}">
+                <a href="{{ item.url }}" class="ActionList-content">
+                  <span class="ActionList-item-label">{{ item.name }}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
     {% endfor %}
   {% endif %}
 </aside>
