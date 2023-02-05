@@ -132,7 +132,7 @@ but separate `NAT Gateway` for each `Availability Zone` is more reliable solutio
 +-------------------------------------------------------------------------------------------+
 ```
 
-### VPC with public and private subnets and Site-to-Site VPN access
+### VPC with public and private subnets and site-to-site VPN access
 
 Recommended if you want to extend your network into the cloud and VPC needs access the Internet.
 
@@ -168,7 +168,7 @@ Recommended if you want to extend your network into the cloud and VPC needs acce
 +-------------------------------------------------------------------------------------------+
 ```
 
-### VPC with private subnet(s) and Site-to-Site VPN access
+### VPC with private subnet(s) and site-to-site VPN access
 
 Recommended if you want to extend your network into the cloud and VPC doesn't need access the Internet.
 
