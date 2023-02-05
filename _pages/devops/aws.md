@@ -3,7 +3,7 @@ layout: page
 section: DevOps
 title: AWS
 title_long: AWS (Amazon Web Services)
-order: 500
+order: 400
 ---
 
 * TOC

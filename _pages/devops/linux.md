@@ -2,7 +2,7 @@
 layout: page
 section: DevOps
 title: Linux
-order: 100
+order: 300
 ---
 
 * TOC
