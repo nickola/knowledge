@@ -138,11 +138,11 @@ Recommended if you want to extend your network into the cloud and VPC needs acce
                               +----------+     +-------------------+
                               | Internet |     | Corporate Network |
                               +----------+     +-------------------+
-                                   |                    |
-                          +------------------+   +-------------+
-                          | Internet Gateway |   | VPN Gateway |
-                          +------------------+   +-------------+
-                                   |                    |
+                                   |                     |
+                          +------------------+    +-------------+
+                          | Internet Gateway |    | VPN Gateway |
+                          +------------------+    +-------------+
+                                   |                     |
 +-------------------------------------------------------------------------------------------+
 | VPC (10.0.0.0/16)                                                                         |
 |                                                                                           |
@@ -171,9 +171,9 @@ Recommended if you want to extend your network into the cloud and VPC needs acce
 Recommended if you want to extend your network into the cloud and VPC doesn't need access the Internet.
 
 ```
-                                     +-------------------+
-                                     | Corporate Network |
-                                     +-------------------+
+                                    +-------------------+
+                                    | Corporate Network |
+                                    +-------------------+
                                               |
                                        +-------------+
                                        | VPN Gateway |
