@@ -11,7 +11,7 @@ order: 500
 
 # About
 
-Amazon Web Services is reliable and scalable cloud computing services.
+Amazon Web Services is reliable and scalable cloud computing services from Amazon.
 
 # Region
 
