@@ -38,9 +38,9 @@ VPC size for IPv4 (in CIDR notation): maximum - `/16` (65 536 IPs), minimum `/28
 CIDR block for IPv6 has a fixed prefix: `/56`. IP address size: IPv4 - 32 bit, IPv6 - 128 bit.
 
 Private IPv4 address ranges (RFC 1918):
-  - `10.0.0.0/8` (`16 777 216` IPs): `10.0.0.0 - 10.255.255.255`, for example - `10.0.0.0/16`.
-  - `172.16.0.0/12` (`1 048 576` IPs): `172.16.0.0 - 172.31.255.255`, for example - `172.31.0.0/16`.
-  - `192.168.0.0/16` (`65 536` IPs): `192.168.0.0 - 192.168.255.255`, for example - `192.168.0.0/20` (`192.168.0.0 - 192.168.15.255`).
+  - `10.0.0.0/8` (`16 777 216` IPs): `10.0.0.0 - 10.255.255.255`, subnet example - `10.0.0.0/16`.
+  - `172.16.0.0/12` (`1 048 576` IPs): `172.16.0.0 - 172.31.255.255`, subnet example - `172.31.0.0/16`.
+  - `192.168.0.0/16` (`65 536` IPs): `192.168.0.0 - 192.168.255.255`, subnet example - `192.168.0.0/20` (`192.168.0.0 - 192.168.15.255`).
 
 5 IPs in VPC are `reserved`, for example (for network `10.0.0.0/16`): 10.0.0.0 (network), 10.0.0.1 (router), 10.0.0.2 (DNS),
 10.0.0.3 (for future), 10.0.0.255 (broadcast, not supported).
