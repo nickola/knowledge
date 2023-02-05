@@ -15,7 +15,7 @@ Amazon Web Services is reliable and scalable cloud computing services from Amazo
 
 # Region
 
-`Region` is a separate geographic location. Each `Region` consists of a minimum 3 isolated and physically separate `Availability Zones`.
+`Region` is a separate geographic location. Each `Region` contains minimum 3 isolated and physically separate `Availability Zones`.
 Examples: `us-east-1`, `us-east-2`, `us-west-1`.
 
 # Availability Zone
