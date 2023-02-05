@@ -129,7 +129,8 @@ Headless `Service` used when you don't need load balancing across `Pods` and sin
 ## Environment variables
 
 > File: [environment-variables.yaml](/devops/kubernetes-examples/environment-variables.yaml)
+{% capture environment_variables %}{% include_relative kubernetes-examples/environment-variables.yaml %}{% endcapture %}
 
 ```yaml
-{% include_relative kubernetes-examples/environment-variables.yaml %}
+{{ environment_variables | strip }}
 ```
