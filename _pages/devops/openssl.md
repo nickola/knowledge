@@ -1,7 +1,7 @@
 ---
 layout: page
 section: DevOps
-name: OpenSSL
+title: OpenSSL
 order: 200
 ---
 

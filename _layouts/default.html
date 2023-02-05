@@ -27,8 +27,8 @@
         </div>
         <div class="d-flex flex-column flex-auto page-main">
           <main class="flex-auto markdown-body page-content">
-            {% if page.header != false and page.name %}
-              <h1>{{ page.name_long | default: page.name }}</h1>
+            {% if page.header != false and page.title %}
+              <h1>{{ page.title_long | default: page.title }}</h1>
             {% endif %}
             {{ content }}
           </main>

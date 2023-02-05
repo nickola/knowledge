@@ -1,7 +1,7 @@
 ---
 layout: page
 section: DevOps
-name: Kubernetes
+title: Kubernetes
 order: 400
 ---
 

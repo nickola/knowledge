@@ -1,8 +1,8 @@
 ---
 layout: page
 section: DevOps
-name: AWS
-name_long: AWS (Amazon Web Services)
+title: AWS
+title_long: AWS (Amazon Web Services)
 order: 500
 ---
 

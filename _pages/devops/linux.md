@@ -1,7 +1,7 @@
 ---
 layout: page
 section: DevOps
-name: Linux
+title: Linux
 order: 100
 ---
 

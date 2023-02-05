@@ -1,7 +1,7 @@
 ---
 layout: page
 section: DevOps
-name: Docker
+title: Docker
 order: 300
 ---
 

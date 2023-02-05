@@ -15,7 +15,7 @@
             {% for item in items %}
               <li class="ActionList-item{% if item.url == page.url %} ActionList-item--navActive{% endif %}">
                 <a href="{{ item.url }}" class="ActionList-content">
-                  <span class="ActionList-item-label">{{ item.name }}</span>
+                  <span class="ActionList-item-label">{{ item.title }}</span>
                 </a>
               </li>
             {% endfor %}
