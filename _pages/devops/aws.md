@@ -97,6 +97,8 @@ Recommended if you want to run public-facing applications (for example: website)
 
 Recommended if you want to run public-facing applications (for example: website) and you need other servers,
 that are not publicly accessible (for example: databases).
+You can also use only one `NAT Gateway` for all private subnets,
+but separate `NAT Gateway` for each `Availability Zone` is more reliable solution.
 
 ```
                                          +----------+
