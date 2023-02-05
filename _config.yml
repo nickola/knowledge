@@ -8,6 +8,9 @@ copyright:
 
 markdown: kramdown
 
+plugins:
+  - jekyll-sitemap
+
 sections:
  - DevOps
  - Programming
