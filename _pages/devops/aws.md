@@ -34,7 +34,7 @@ You can specify who can access which services and resources and under which cond
 # Virtual Private Cloud
 
 Virtual Private Cloud (VPC) is a logically isolated virtual network. VPC supports IPv4 and IPv6 addressing.
-VPC size for IPv4 (in CIDR notation): maximum - `/16` (65 536 IPs), minimum `/28` (16 IPs).
+VPC size for IPv4 (in CIDR notation): maximum - `/16` (`65 536` IPs), minimum `/28` (16 IPs).
 CIDR block for IPv6 has a fixed prefix: `/56`. IP address size: IPv4 - 32 bit, IPv6 - 128 bit.
 
 Private IPv4 address ranges (RFC 1918):
