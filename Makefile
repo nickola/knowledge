@@ -7,8 +7,15 @@ MANAGE = ./manage.py
 # Targets are not files / directories ("all" - default target, invoked by simply executing "make")
 .PHONY: all $(MAKECMDGOALS)
 
-# Using "documentation" as default target
-all: documentation
+# Using "serve" as default target
+all: serve
 
-documentation:
-	${MANAGE} documentation
+# Ruby (Jekul)
+ruby-install:
+	bundle install --path .bundle/data
+
+serve:
+	bundle exec jekyll serve
+
+serve-public:
+	bundle exec jekyll serve --host 0.0.0.0

@@ -1,36 +1,34 @@
-# Contents
+---
+layout: page
+section: DevOps
+name: Kubernetes
+order: 400
+---
 
-- [Kubernetes](#kubernetes)
-  - [Control Plane](#control-plane)
-  - [Other Components](#other-components)
-  - [Workloads](#workloads)
-    - [Pods](#pods)
-    - [Workload Resources and Controllers](#workload-resources-and-controllers)
-  - [Liveness, Readiness and Startup Probes](#liveness-readiness-and-startup-probes)
-  - [Service](#service)
-  - [Snippets](#snippets)
-    - [Environment variables for container](#environment-variables-for-container)
-- [Linux](#linux)
-  - [Load Average (LA)](#load-average-la)
-  - ["proc" Filesystem](#proc-filesystem)
-  - [Process States](#process-states)
+* TOC
+{:toc}
 
-# Kubernetes
+# About
 
-Kubernetes is a container orchestration engine for automating deployment, scaling and management of containerized applications.
-Kubernetes cluster contains a set of worker machines (called nodes). `Control plane` (`master` nodes) manages the `worker` nodes and the cluster.
+Kubernetes is a container orchestration engine for automating deployment,
+scaling and management of containerized applications.
 
-## Control Plane
+# Components
 
-Control plane components make decisions about the cluster (example: scheduling),
-detecting and responding to cluster events (example: starting new pod when `replicas` field of `Deployment` is unsatisfied).
+Kubernetes cluster contains a set of nodes (machines).
+`master` nodes (`Control Plane`) manage the `worker` nodes and the cluster.
 
-Control plane components can be run on any machine in the cluster (`master` node can be `worker` node in the same time),
-but it's recommended to run control plane components on separate nodes (without user containers and with high availability).
+`Control Plane` makes decisions about the cluster (for example: `Pods` scheduling),
+detecting and responding to cluster events (example: starting new `Pod` when `replicas` field of `Deployment` is unsatisfied).
 
-For example, in AWS (Amazon Web Services) EKS (Elastic Kubernetes Service) control plane runs in an account managed by AWS itself, on its own set of Amazon EC2 instances in multiple availability zones.
+`Control Plane` components can be run on any machine in the cluster (`master` node can be `worker` node in the same time),
+but it's recommended to run `Control Plane` components on separate nodes (without user containers and with high availability).
 
-`Control plane` components:
+For example, in AWS (Amazon Web Services) EKS (Elastic Kubernetes Service) `Control Plane` runs in an account managed by AWS itself,
+on its own set of Amazon EC2 instances in multiple availability zones.
+
+## Control Plane components
+
   - `kube-apiserver`: Exposes the Kubernetes API (`kubectl` uses this API).
   - `etcd`: Key-value storage, keeps all cluster data.
   - `kube-scheduler`: Watches for newly created `Pods` with no assigned node, and selects a node for them to run on.
@@ -39,7 +37,8 @@ For example, in AWS (Amazon Web Services) EKS (Elastic Kubernetes Service) contr
     `Node controller` - responsible for noticing and responding when nodes go down.
   - `cloud-controller-manager`: Cloud-specific control logic (for cloud providers).
 
-`Node` components:
+## Node components
+
   - `kubelet`: Agent that runs on each node. It makes sure that containers are running.
     It doesn't manage containers which were not created by Kubernetes.
   - `kube-proxy`: Network proxy that runs on each node, maintains network rules on nodes.
@@ -48,32 +47,29 @@ For example, in AWS (Amazon Web Services) EKS (Elastic Kubernetes Service) contr
   - `Container runtime`: Software that is responsible for running containers, for example: `containerd`, `CRI-O` or
     any other implementation of the Kubernetes `CRI` (Container Runtime Interface).
 
-## Other Components
+## Other components
 
-The `CoreDNS` pods provide DNS names resolution for all pods in the cluster.
-In managed Kubernetes from cloud providers the following components can be used.
+  - `CoreDNS`: `Deployment` (`Pods`) responsible for DNS names resolution for all pods in the cluster.
+  - `aws-node` (in Amazon EKS): `DaemonSet` (`Pods`) responsible for IP address management at the node level.
 
-Amazon EKS:
-  - `aws-node` `DaemonSet`: Responsible for IP address management at the node level.
-
-## Workloads
+# Workloads
 
 Workload is an application running on Kubernetes.
 
-### Pods
+## Pods
 
 `Pod` is the smallest deployable unit, it represents a set of running containers
 with shared storage and network resources.
 
 `Pod` phases: `Pending` (accepted, waiting to be scheduled, downloading images), `Running` (bound to node, at least one container is running), `Succeeded` (all containers successfully terminated), `Failed` (all containers terminated and at least one terminated with non-zero exit code), `Unknown` (can't get state, node connection issues).
 
-`Pod` statuses: `Running` (phase `Running`), `Pending` (phase `Pending`), `Completed` (phase `Running` or `Failed`), `ImagePullBackOff` (can't pull image, will keep trying), `CrashLoopBackOff` (container is started, but crashes, will keep trying).
+`Pod` statuses: `Running` (phase `Running`), `Pending` (phase `Pending`), `Completed` (phase `Running` or `Failed`), `ImagePullBackOff` (can't pull image, will keep trying), `CrashLoopBackOff` (container is started, but crashes, will keep trying to restart).
 
 Container states: `Waiting` (waiting for start up, example: pulling image), `Running` (is executing without issues), `Terminated` (you check reason and exit code).
 
 Container `restartPolicy`: `Always` (container will be restarted even if exited successfully - zero exit code), `OnFailure` (container will be restarted only if exited with a non-zero exit), `Never` (container will not be restarted at all).
 
-### Workload Resources and Controllers
+## Workload Resources and Controllers
 
 Workload resources manage a set of pods on your behalf, these resources configure controllers.
 Controller tracks Kubernetes resources, it tries to make the current state come closer to desired state.
@@ -93,7 +89,7 @@ Controller tracks Kubernetes resources, it tries to make the current state come 
   Suspending (`suspend: true`) `Job` will delete its active `Pods` until the `Job` is resumed again.
 - `CronJob`: Performs regular scheduled actions (scheduling with CRON syntax). Creates `Jobs` according to a schedule.
 
-## Liveness, Readiness and Startup Probes
+# Liveness, Readiness and Startup Probes
 
 `livenessProbe` is used to know when to restart a container. For example: application is running but doesn't work properly (deadlock or some other issue).
 Restarting a container in such state can help to make the application more available despite bugs.
@@ -114,7 +110,7 @@ Probes configuration:
   - `failureThreshold`: After the probe fails specified times in a row, the overall check has failed:
     the container is not ready / healthy / live. For the case of a startup or liveness probe - container will be restarted.
 
-## Service
+# Service
 
 `Service` is an abstract way to expose application running on a set of `Pods` (based on `selector` - `Pod` labels) as a network service (load balanced as round robin / random).
 
@@ -127,39 +123,3 @@ Probes configuration:
 If `selector` is not defined, corresponding `EndpointSlice` (legacy `Endpoints`) are not created automatically and should be created manually. `EndpointSlice` contains references to a set of network endpoints.
 
 Headless `Service` used when you don't need load balancing across `Pods` and single IP for the `Service`. If will return DNS `A` / `AAAA` records for each IP or DNS `CNAME` record for `type: ExternalName`. It can be created if explicitly specify `None` for the `clusterIP` field.
-
-## Snippets
-
-### Environment variables for container
-
-This example shows how to add environment variables to container from `ConfigMap`, `Secret` and
-downwards API (`Node` name and IP, `Pod` namespace, name and IP, resources requests and limits).
-
-See file: [kubernetes/snippets/environment-variables.yaml](kubernetes/snippets/environment-variables.yaml).
-
-# Linux
-
-Linux is open-source Unix-like operating systems (OS) based on the Linux kernel.
-Linux kernel was first released in 1991 by Linus Torvalds.
-
-## Load Average (LA)
-
-`Load Average` (LA) represents the average system load – the number of processes executed by the CPU or are waiting for execution.
-It is displayed for a period of time (`1`, `5` and `15` minutes) in the output of the `uptime` or `top` commands.
-
-It can be also checked using `proc` filesystem: `cat /proc/loadavg`. The first three columns is `Load Average`.
-The fourth column shows the number of currently running processes and the total number of processes.
-The last column displays the last process ID used.
-
-## "proc" Filesystem
-
-The `proc` filesystem (`procfs`) is a special filesystem in Unix-like operating systems that presents information about processes
-and other system information in a hierarchical file-like structure.
-
-## Process States
-
-Linux process states:
-  - `R` (running or runnable): On run queue, waiting for the CPU.
-  - `S` (interruptible sleep): Waiting for an event, such as input from the terminal.
-  - `D` (uninterruptible sleep): Usually IO, cannot be killed or interrupted with a signal.
-  - `Z` (zombie / defunct): Terminated but its exit status is not read by parent process yet.

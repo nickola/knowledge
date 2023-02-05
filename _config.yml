@@ -1,2 +1,19 @@
+name: Knowledge Base
 title: Knowledge Base &mdash; Nickolay Kovalev
-description: Very useful but short notes and snippets for different things.
+description: Useful notes and snippets for different things.
+
+copyright:
+  name: Nickolay Kovalev
+  link: https://github.com/nickola
+
+markdown: kramdown
+
+sections:
+ - DevOps
+ - Programming
+ - Other
+
+collections:
+  pages:
+    output: true
+    permalink: /:path

@@ -1,2 +1,13 @@
+# Data
+/_data
+
+# VS Code
+/*.code-workspace
+
+# Ruby / Jekyll
+/Gemfile.lock
+/.bundle
+/_site
+
 # macOS
 .ds_store
