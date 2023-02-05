@@ -224,6 +224,7 @@ body {
 
 .page-main {
   min-height: calc(100vh - #{$header-height + $header-border-top-width + $header-border-bottom-width});
+  overflow: hidden;
 }
 
 .page-content {
