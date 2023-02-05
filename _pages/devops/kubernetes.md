@@ -123,3 +123,12 @@ Probes configuration:
 If `selector` is not defined, corresponding `EndpointSlice` (legacy `Endpoints`) are not created automatically and should be created manually. `EndpointSlice` contains references to a set of network endpoints.
 
 Headless `Service` used when you don't need load balancing across `Pods` and single IP for the `Service`. If will return DNS `A` / `AAAA` records for each IP or DNS `CNAME` record for `type: ExternalName`. It can be created if explicitly specify `None` for the `clusterIP` field.
+
+# Examples
+
+## Environment variables
+
+This example shows how to add environment variables to container from `ConfigMap`, `Secret` and
+downwards API (`Node` name and IP, `Pod` namespace, name and IP, resources requests and limits).
+
+See file: [/devops/kubernetes/environment-variables.yaml](environment-variables.yaml).
