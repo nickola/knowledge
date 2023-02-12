@@ -86,14 +86,14 @@ It has been cryptographically broken and considered **insecure** (it should not 
 
 <div id="#converter-md5"></div><script>render('#converter-md5', 'md5')</script>
 
-## SHA1
+## SHA-1
 
 The `SHA-1` (Secure Hash Algorithm 1) is a cryptographic hash function which produces a `160-bit` hash value.
 It has been cryptographically broken and considered **insecure** (it should not be used).
 
 <div id="#sha1"></div><script>render('#sha1', 'sha1')</script>
 
-## SHA2
+## SHA-2
 
 The `SHA-2` (Secure Hash Algorithm 2) is a set of cryptographic hash functions, it consists hash functions
 which produce `224-bit`, `256-bit`, `384-bit` or `512-bit` hash values.
