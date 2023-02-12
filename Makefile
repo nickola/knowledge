@@ -19,3 +19,10 @@ serve:
 
 serve-public:
 	bundle exec jekyll serve --host 0.0.0.0
+
+# Webpack
+webpack:
+	npm run start
+
+webpack-build:
+	npm run build

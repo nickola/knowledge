@@ -1,13 +1,17 @@
 # Data
-/_data
+/_data/
 
 # VS Code
 /*.code-workspace
 
 # Ruby / Jekyll
 /Gemfile.lock
-/.bundle
-/_site
+/.bundle/
+/_site/
+
+# Node
+/node_modules/
+/package-lock.json
 
 # macOS
 .ds_store

@@ -6,6 +6,7 @@
 
 // Primer theme
 @import "primer/header";
+@import "primer/forms";
 @import "primer/actionlist";
 @import "primer/utilities";
 
@@ -46,6 +47,26 @@ body {
 
   &, &:hover {
     text-decoration: none;
+  }
+}
+
+.form-group .form-group-header {
+  font-weight: 500;
+}
+
+.form-select, .form-control, textarea.form-control {
+  padding: $spacing * 0.4 $spacing * 0.6 !important;
+  line-height: 20px !important;
+  min-height: 20px + ($spacing * 0.4 + 1px) * 2 !important;
+}
+
+.form-select, .form-control {
+  &, &:focus, &[disabled] {
+    border: 1px solid $border;
+  }
+
+  &[disabled] {
+    background-color: lighten($border, 3%);
   }
 }
 

@@ -1,6 +1,7 @@
 ---
 layout: page
 header: false
+title: false
 ---
 
 # About
