@@ -306,7 +306,7 @@ components.md5 = class extends Converter {
 
 components.sha1 = class extends Converter {
   input = "Text";
-  output = "SHA1";
+  output = "SHA-1";
   multiline = true;
 
   convert = (value) => sha1(value).toString();
@@ -314,7 +314,7 @@ components.sha1 = class extends Converter {
 
 components.sha224 = class extends Converter {
   input = "Text";
-  output = "SHA224";
+  output = "SHA-224";
   multiline = true;
   outputRows = 2;
 
@@ -323,7 +323,7 @@ components.sha224 = class extends Converter {
 
 components.sha256 = class extends Converter {
   input = "Text";
-  output = "SHA256";
+  output = "SHA-256";
   multiline = true;
   outputRows = 2;
 
@@ -332,7 +332,7 @@ components.sha256 = class extends Converter {
 
 components.sha384 = class extends Converter {
   input = "Text";
-  output = "SHA384";
+  output = "SHA-384";
   multiline = true;
   outputRows = 2;
 
@@ -341,7 +341,7 @@ components.sha384 = class extends Converter {
 
 components.sha512 = class extends Converter {
   input = "Text";
-  output = "SHA512";
+  output = "SHA-512";
   multiline = true;
   outputRows = 3;
 
