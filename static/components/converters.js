@@ -148,8 +148,8 @@ class Converter extends React.Component {
             onSubmit={this.formSubmit} css={{
         margin: '-16px 0 16px -16px',
         '.form-control': {margin: 0},
-        '.converter-item': {margin: '16px 0 0 16px'},
-        '.converter-field': {
+        '.converter-item': {
+          margin: '16px 0 0 16px',
           'input, textarea': {
             minWidth: '225px'
           },
@@ -157,31 +157,33 @@ class Converter extends React.Component {
             height: 'auto',
             maxHeight: '150px'
           }
+        },
+        '.converter-arrow': {
+          paddingLeft: '16px'
         }
       }}>
-        <div className="form-group flex-1 converter-item converter-field">
+        <div className="form-group flex-1 converter-item">
           <div className="form-group-header width-full">
             <label htmlFor={`input-${this.randomID}`}>{this.input || "Input"}</label>
           </div>
           <div className="form-group-body width-full">
-            {(multiline || inputMultiline) ? <textarea {...inputProps} /> : <input {...inputProps} />}
+            <div className="d-flex flex-items-stretch">
+              <div className="flex-1">
+                {(multiline || inputMultiline) ? <textarea {...inputProps} /> : <input {...inputProps} />}
+              </div>
+              <div className="d-flex flex-items-center converter-arrow">
+                {!hasBackward ?
+                <svg width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path>
+                </svg> :
+                <svg width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.78 5.97a.75.75 0 0 0-1.06 0l-5.25 5.25a.75.75 0 0 0 0 1.06l5.25 5.25a.75.75 0 0 0 1.06-1.06L3.81 12.5h16.38l-3.97 3.97a.75.75 0 1 0 1.06 1.06l5.25-5.25a.75.75 0 0 0 0-1.06l-5.25-5.25a.75.75 0 1 0-1.06 1.06L20.19 11H3.81l3.97-3.97a.75.75 0 0 0 0-1.06Z"></path>
+                </svg>}
+              </div>
+            </div>
           </div>
         </div>
-        <div className="form-group d-flex flex-column flex-items-stretch converter-item">
-          <div className="form-group-header width-full">
-            <label>&nbsp;</label>
-          </div>
-          <div className="form-group-body d-flex flex-items-center flex-1">
-            {!hasBackward ?
-            <svg width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path>
-            </svg> :
-            <svg width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7.78 5.97a.75.75 0 0 0-1.06 0l-5.25 5.25a.75.75 0 0 0 0 1.06l5.25 5.25a.75.75 0 0 0 1.06-1.06L3.81 12.5h16.38l-3.97 3.97a.75.75 0 1 0 1.06 1.06l5.25-5.25a.75.75 0 0 0 0-1.06l-5.25-5.25a.75.75 0 1 0-1.06 1.06L20.19 11H3.81l3.97-3.97a.75.75 0 0 0 0-1.06Z"></path>
-            </svg>}
-          </div>
-        </div>
-        <div className="form-group flex-1 converter-item converter-field">
+        <div className="form-group flex-1 converter-item">
           <div className="form-group-header width-full">
             <label htmlFor={`output-${this.randomID}`}>{this.output || "Output"}</label>
           </div>

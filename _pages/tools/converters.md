@@ -67,7 +67,7 @@ The objective of CIDR it to improve the previous classful network addressing arc
 
 <div id="#converter-cidr"></div><script>render("#converter-cidr", "cidr")</script>
 
-# Encoding algorithms
+# Encoding
 
 ## Base64
 
@@ -82,14 +82,14 @@ The `=` symbol is also used as a padding suffix (can be optional).
 ## MD5
 
 The `MD5` (Message Digest 5) is a cryptographic hash function which produces a `128-bit` hash value.
-**It has been cryptographically broken and considered insecure (it should not be used).**
+It has been cryptographically broken and considered **insecure** (it should not be used).
 
 <div id="#converter-md5"></div><script>render('#converter-md5', 'md5')</script>
 
 ## SHA1
 
 The `SHA-1` (Secure Hash Algorithm 1) is a cryptographic hash function which produces a `160-bit` hash value.
-**It has been cryptographically broken and considered insecure (it should not be used).**
+It has been cryptographically broken and considered **insecure** (it should not be used).
 
 <div id="#sha1"></div><script>render('#sha1', 'sha1')</script>
 
@@ -110,8 +110,8 @@ which produce `224-bit`, `256-bit`, `384-bit` or `512-bit` hash values.
 The `htpasswd` is used to store usernames and passwords for basic HTTP authentication (used in `Apache` and `nginx`). It supports different formats for password:
 
 - `bcrypt`: `$2y$` or `$2a$` + the result of the `crypt_blowfish` algorithm. **Secure.**
-- `MD5`: `$apr1$` + the result of an `Apache-specific MD5 algorithm`. Standard but insecure.
-- `SHA1`: `{SHA}` + Base64-encoded SHA-1 digest. Insecure.
+- `MD5`: `$apr1$` + the result of the `Apache-specific MD5 algorithm`. Common but insecure.
+- `SHA1`: `{SHA}` + Base64-encoded SHA-1. Insecure.
 - `CRYPT`: Unix `crypt` function with a randomly-generated 32-bit salt. Insecure.
 - `PLAIN TEXT`: Unencrypted. Insecure.
 
